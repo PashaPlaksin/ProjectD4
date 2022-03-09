@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
+from django.urls import reverse
 # Create your models here.
 
 
@@ -58,8 +59,9 @@ class Post(models.Model):
     def preview(self):
         return self.post_text[0:124]+"..."
 
-    def get_absolute_url(self):  # добавим абсолютный путь, чтобы после создания нас перебрасывало на страницу с товаром
-        return f'/news/{self.id}'
+    def get_absolute_url(self):  # чтобы после создания нас перебрасывало на страницу с новостью
+        return reverse('post_detail', args=[str(self.id)])
+        #return f'/news/{self.id}' можно так без reverse
 
 
 class PostCategory(models.Model):
