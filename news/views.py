@@ -1,3 +1,4 @@
+import requests
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.shortcuts import render
 from .models import Post
@@ -20,6 +21,21 @@ class PostSearch(ListView):
 class PostCreate(CreateView):
     template_name = 'news_create.html'
     form_class = PostForm
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.post_types = 'ne'
+        return super().form_valid(form)
+
+
+class ArticleCreate(CreateView):
+    template_name = 'news_create.html'
+    form_class = PostForm
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.post_types = 'ar'
+        return super().form_valid(form)
 
 
 class PostList(ListView):

@@ -7,4 +7,4 @@ class PostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields = ['author', 'post_types', 'categories', 'title_post', 'post_text']
+        fields = ['author', 'categories', 'title_post', 'post_text'] #'post_types' ar - статья, ne - новость
